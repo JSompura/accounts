@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('owner_id');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

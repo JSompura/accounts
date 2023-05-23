@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Birdboard</h1>
-    <ul>
-        @forelse ($projects as $project)
-            <li>
-                <a href="{{ $project->path() }}">
-                    {{ $project->title }}
-                </a>
-            </li>
-        @empty
-            <li>No projects yet.</li>
-        @endforelse
-    </ul>
+@extends('layouts.app')
+@section('content')
 
-</body>
-</html>
+<div class="flex content-center mb-4">
+    <img src="/images/logo.svg" alt="birdboard">
+    <a href="/projects/create"><p class="underline">New project</p></a>
+</div>
+    <div class="flex flex-wrap -mx-3">
+        @forelse ($projects as $project)
+        <div class="w-1/3 px-3 py-6">
+            <div class="bg-white p-5 rounded shadow h-48">
+                    <div class="text-xl font-semibold py-4">{{ $project->title }}</div>
+                    <div class="text-gray-400">{{ Str::limit($project->description) }}</div>
+            </div>
+        </div>
+        @empty
+            <div>No projects yet.</div>
+        @endforelse
+    </div>
+@endsection

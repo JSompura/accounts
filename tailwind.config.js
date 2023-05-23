@@ -13,6 +13,10 @@ module.exports = {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            boxShadow: {
+                // Customize your shadow classes here
+                'default': '0 2px 4px 0 rgba(0, 0, 0, 0.10)',
+            },
         },
     },
 
