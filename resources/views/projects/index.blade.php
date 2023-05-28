@@ -1,18 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="flex content-center mb-4">
-    <img src="/images/logo.svg" alt="birdboard">
-    <a href="/projects/create"><p class="underline">New project</p></a>
-</div>
-    <div class="flex flex-wrap -mx-3">
+<header class="flex item-center mb-3 py-4">
+    <div class="flex justify-between items-end w-full">
+        <h2 class="text-gray-400 text-lg">My Projects</h2>
+        <a href="/projects/create"><p class="button">New project</p></a>
+    </div>
+</header>
+    <div class="lg:flex lg:flex-wrap -mx-3">
         @forelse ($projects as $project)
-        <div class="w-1/3 px-3 py-6">
-            <div class="bg-white p-5 rounded shadow h-48">
-                    <div class="text-xl font-semibold py-4">{{ $project->title }}</div>
-                    <div class="text-gray-400">{{ Str::limit($project->description) }}</div>
+            <div class="lg:w-1/3 px-3 py-6">
+                @include('projects.card')
             </div>
-        </div>
         @empty
             <div>No projects yet.</div>
         @endforelse
