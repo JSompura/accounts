@@ -20,8 +20,8 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(12),
-            'description' => fake()->paragraph(5),
+            'title' => fake()->sentence(4),
+            'description' => fake()->sentence(4),
             'owner_id' => function() {
                 return User::factory()->create()->id;
             }

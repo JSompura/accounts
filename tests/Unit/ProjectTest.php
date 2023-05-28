@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,5 +20,13 @@ class ProjectTest extends TestCase
     {
         $project = Project::factory()->create();
         $this->assertInstanceOf('App\Models\User', $project->owner);
+    }
+
+    public function test_it_can_add_a_task(): void
+    {
+        $project = Project::factory()->create();
+        $task = $project->addTask('Test task');
+        $this->assertCount(1, $project->tasks);
+        $this->assertTrue($project->tasks->contains($task));
     }
 }
