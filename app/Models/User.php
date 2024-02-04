@@ -44,6 +44,21 @@ class User extends Authenticatable
 
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class, 'owner_id');
+        return $this->hasMany(Project::class, 'owner_id')->latest('updated_at');
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'user_id')->latest('updated_at');
+    }
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(Account::class, 'user_id');
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class, 'user_id');
     }
 }

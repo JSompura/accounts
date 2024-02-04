@@ -17,9 +17,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        if(auth()->id() != $project->owner_id) {
-            abort(403);
-        }
+        $this->authorize('update', $project);
         return view('projects.show', compact('project'));
     }
 
@@ -32,9 +30,18 @@ class ProjectsController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'notes' => 'min:3'
         ]);
         $project = Auth::user()->projects()->create($attributes);
+        return redirect($project->path());
+    }
+
+    function update(Project $project) {
+        $this->authorize('update', $project);
+        $project->update([
+            'notes' => request()->notes
+        ]);
         return redirect($project->path());
     }
 }
