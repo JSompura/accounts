@@ -30,6 +30,7 @@ Route::get('/pdf', function () {
 });
 
 Route::get('/dashboard', function () {
+    //test
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
