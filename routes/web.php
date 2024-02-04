@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function() {
     // Route::get('/categories', [AccountsController::class, 'index']);
 });
 
+
+// Make changes here
 Route::middleware('auth')->group(function() {
     Route::get('/transactions', [TransactionsController::class, 'index']);
     Route::get('/transactions/create', [TransactionsController::class, 'create']);
