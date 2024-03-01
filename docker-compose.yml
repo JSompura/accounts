@@ -67,6 +67,19 @@ services:
     networks:
       - laravel
 
+  react:
+    build:
+      context: .
+      dockerfile: react.dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./lc-react/src:/app/src
+    environment:
+     - WATCHPACK_POLLING=true
+    networks:
+      - laravel
+
 networks:
   laravel:
 volumes:
